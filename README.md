@@ -46,9 +46,9 @@ data_loader = AkLoader(start_date='20240101')
 set_data_loader(data_loader, default_stock_id="600900", default_freq='daily')
 ```
 
-### 2. 常用数据序列变量
+### 2. 常用行情数据序列变量
 
-#### 默认数据序列
+#### 默认行情数据序列
 
 | 变量        | 含义         |
 |-------------|--------------|
@@ -58,7 +58,7 @@ set_data_loader(data_loader, default_stock_id="600900", default_freq='daily')
 | `LOW()`/`L`   | 默认最低价序列 |
 | `DATE()`/`D`  | 默认日期序列      |
 
-#### 带参数数据序列
+#### 带参数行情数据序列
 
 | 函数         | 说明                         |
 |--------------|------------------------------|
