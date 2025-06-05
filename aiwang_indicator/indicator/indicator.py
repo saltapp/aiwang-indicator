@@ -88,6 +88,9 @@ def INDEX(S):             #将序列S转化为指数化序列，首日为1000，
         else:
             idx[i] = idx[i-1] * (S[i] / S[i-1])
     return idx
+
+def CUMPROD(S):              #对输入序列S进行累计乘积，返回同长度的序列。例如：S=[1,2,3,4]，返回[1,2,6,24]
+    return np.cumprod(S)
   
 #------------------   1级：应用层函数(通过0级核心函数实现）使用方法请参考通达信--------------------------------
 def COUNT(S, N):                       # COUNT(CLOSE>O, N):  最近N天满足S_BOO的天数  True的天数
