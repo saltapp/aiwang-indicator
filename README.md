@@ -23,7 +23,7 @@
 
 ---
 
-## 安装
+## 安装 aiwang-indicator
 
 ```bash
 pip install aiwang-indicator
