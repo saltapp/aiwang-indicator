@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 
-from .indicator.indicator import *
+from .indicator import *
 from .context import ExecutionContext
 
 # 先定义全局变量
