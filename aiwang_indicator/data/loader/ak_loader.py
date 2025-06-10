@@ -7,13 +7,16 @@ class AkLoader(BaseDataLoader):
     def __init__(self, start_date):
         super().__init__(start_date)
 
-    def get_stock_data(self, code, freq):
+    def get_stock_data(self, code : str, freq: str):
         if freq in ['30min', '60min']:
             full_code = f'sh{code}' if code.startswith('6') else f'sz{code}'
             freq_para = '30' if freq == '30min' else '60'
             df = ak.stock_zh_a_minute(symbol=full_code, period=freq_para, adjust="qfq")
         else:
-            df = ak.stock_zh_a_hist(symbol=code, period=freq, start_date=self.get_start_date(), adjust="qfq")
+            if code.startswith('HS'):
+                df = ak.stock_hk_daily(symbol=code[2:], adjust="qfq")
+            else:
+                df = ak.stock_zh_a_hist(symbol=code, period=freq, start_date=self.get_start_date(), adjust="qfq")
         return self._convert_to_standard_df(df, freq)
 
     def _convert_to_standard_df(self, df, freq):
@@ -41,6 +44,14 @@ class AkLoader(BaseDataLoader):
         elif 'day' in df.columns:
             df = df.rename(columns={
                 'day': 'Date',
+                'open': 'Open',
+                'high': 'High',
+                'low': 'Low',
+                'close': 'Close'
+            })
+        elif 'date' in df.columns:
+            df = df.rename(columns={
+                'date': 'Date',
                 'open': 'Open',
                 'high': 'High',
                 'low': 'Low',
