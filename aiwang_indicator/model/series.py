@@ -23,7 +23,7 @@ class BaseDatedSeries:
     
     def __sub__(self, other):
         if isinstance(other, (int, float)):
-            return self.__class__(self.data + other, self.data.index)
+            return self.__class__(self.data - other, self.data.index)
         
         # 找出所有时间点的并集
         all_dates = self.data.index.union(other.data.index)
@@ -65,6 +65,9 @@ class BaseDatedSeries:
     
     def __getitem__(self, key):
         return self.data[key]
+    
+    def __repr__(self):
+        return repr(self.data)
     
     @property
     def values(self):
